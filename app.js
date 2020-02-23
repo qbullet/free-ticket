@@ -78,8 +78,8 @@ app.post('/ticket-insert',async (req, res) => {
         data.id,
         data.name,
         data.amount,
-        data.start,
-        data.end
+        data.startTime,
+        data.endTime
     )
 
     res.send({
@@ -101,18 +101,18 @@ app.post('/ticket-update',async (req, res) => {
     if (data.amount != "") new_ticket.amount = data.amount
     else new_ticket.amount = old_ticket[0].amount
 
-    if (data.start != "") new_ticket.start = data.start
-    else new_ticket.start = old_ticket[0].startTime
+    if (data.start != "") new_ticket.startTime = data.startTime
+    else new_ticket.startTime = old_ticket[0].startTime
 
-    if (data.end != "") new_ticket.end = data.end
-    else new_ticket.end = old_ticket[0].endTime
+    if (data.end != "") new_ticket.endTime = data.endTime
+    else new_ticketTime.end = old_ticket[0].endTime
     
     await Ticket_Update(
         data.id,
         new_ticket.name,
         new_ticket.amount,
-        new_ticket.start,
-        new_ticket.end
+        new_ticket.startTime,
+        new_ticket.endTime
     )
 
     res.send({
