@@ -101,11 +101,11 @@ app.post('/ticket-update',async (req, res) => {
     if (data.amount != "") new_ticket.amount = data.amount
     else new_ticket.amount = old_ticket[0].amount
 
-    if (data.start != "") new_ticket.startTime = data.startTime
+    if (data.startTime != "") new_ticket.startTime = data.startTime
     else new_ticket.startTime = old_ticket[0].startTime
 
-    if (data.end != "") new_ticket.endTime = data.endTime
-    else new_ticketTime.end = old_ticket[0].endTime
+    if (data.endTime != "") new_ticket.endTime = data.endTime
+    else new_ticket.endTime = old_ticket[0].endTime
     
     await Ticket_Update(
         data.id,
