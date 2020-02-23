@@ -24,7 +24,7 @@ var tickets //MODEL
 Tickets_Setup()
 // -------------------------------------------------------------------------------------------------------
 
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
     res.send({
         ok: "true"
     })
@@ -40,19 +40,6 @@ app.get('/ticket-isAvailable', (req, res) => {
         ok: "true",
         data:{
             isAvailable:checked
-        }
-    })
-})
-
-app.get('/ticket-getall', async (req, res) => {
-    res.header("Access-Control-Allow-Origin","*")
-    let {data} = req.body
-
-    let ticket = await Ticket_getOne(data.id)
-    res.send({
-        ok: "true",
-        data:{
-            ticket:ticket
         }
     })
 })
