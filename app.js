@@ -73,7 +73,7 @@ app.get('/ticket-get-all', async (req, res) => {
 app.post('/ticket-insert',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let {data} = req.body
+    let {data} = await req.body
     await Ticket_Insert(
         data.id,
         data.name,
@@ -174,7 +174,7 @@ function Tickets_Setup(){
 
 async function Ticket_Insert(_id,_name,_amount,_start,_end){
     const ticketInsert = new tickets({ 
-        id:id,
+        id:_id,
         name:_name,
         amount:_amount,
         startTime:_start,
