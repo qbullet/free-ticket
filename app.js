@@ -70,6 +70,9 @@ app.post('/ticket-insert',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
     let data = await req.body
+
+    console.log("input = ",data)
+
     await Ticket_Insert(
         data.id,
         data.name,
