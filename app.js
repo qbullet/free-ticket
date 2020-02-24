@@ -33,7 +33,7 @@ app.post('/', (req, res) => {
 app.get('/ticket-isAvailable', (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let {data} = req.body
+    let data = req.body
     let checked = isAvailable(data.timeStart,data.timeEnd)
 
     res.send({
@@ -46,7 +46,7 @@ app.get('/ticket-isAvailable', (req, res) => {
 
 app.get('/ticket-get-one', async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
-    let {data} = req.body
+    let data = req.body
 
     let ticket = await Ticket_getOne(data.id)
     res.send({
@@ -57,7 +57,7 @@ app.get('/ticket-get-one', async (req, res) => {
 
 app.get('/ticket-get-all', async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
-    let {data} = req.body
+    let data = req.body
 
     let ticket = await Ticket_getAll()
     res.send({
@@ -69,7 +69,7 @@ app.get('/ticket-get-all', async (req, res) => {
 app.post('/ticket-insert',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let {data} = await req.body
+    let data = await req.body
     await Ticket_Insert(
         data.id,
         data.name,
@@ -87,7 +87,7 @@ app.post('/ticket-update',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
     let new_ticket = {}
-    let {data} = req.body
+    let data = req.body
     
     let old_ticket = await Ticket_getOne(data.id)
     
@@ -119,7 +119,7 @@ app.post('/ticket-update',async (req, res) => {
 app.post('/ticket-delete',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let {data} = req.body
+    let data = req.body
     await Ticket_Delete(data.id)
 
     res.send({
