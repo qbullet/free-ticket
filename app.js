@@ -51,9 +51,7 @@ app.get('/ticket-get-one', async (req, res) => {
     let ticket = await Ticket_getOne(data.id)
     res.send({
         ok: "true",
-        data:{
-            ticket:ticket
-        }
+        ticket:ticket
     })
 })
 
@@ -64,9 +62,7 @@ app.get('/ticket-get-all', async (req, res) => {
     let ticket = await Ticket_getAll()
     res.send({
         ok: "true",
-        data:{
-            ticket:ticket
-        }
+        ticket:ticket
     })
 })
 
