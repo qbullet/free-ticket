@@ -69,7 +69,7 @@ app.get('/ticket-get-all', async (req, res) => {
 app.post('/ticket-insert',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let data = await req.body
+    let data = await req.param("id")
 
     console.log("input = ",data)
 
