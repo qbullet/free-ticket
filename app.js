@@ -69,16 +69,24 @@ app.get('/ticket-get-all', async (req, res) => {
 app.get('/ticket-insert',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let data = await req.param("id")
+    // let data = await req.param("id")
 
-    console.log("input = ",data)
+    // console.log("input = ",data)
+
+    // await Ticket_Insert(
+    //     data.id,
+    //     data.name,
+    //     data.amount,
+    //     data.startTime,
+    //     data.endTime
+    // )
 
     await Ticket_Insert(
-        data.id,
-        data.name,
-        data.amount,
-        data.startTime,
-        data.endTime
+        req.param("id"),
+        req.param("name"),
+        req.param("amount"),
+        req.param("startTime"),
+        req.param("endTime")
     )
 
     res.send({
