@@ -69,18 +69,6 @@ app.get('/ticket-get-all', async (req, res) => {
 app.get('/ticket-insert',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    // let data = await req.param("id")
-
-    // console.log("input = ",data)
-
-    // await Ticket_Insert(
-    //     data.id,
-    //     data.name,
-    //     data.amount,
-    //     data.startTime,
-    //     data.endTime
-    // )
-
     await Ticket_Insert(
         req.param("id"),
         req.param("name"),
@@ -94,28 +82,27 @@ app.get('/ticket-insert',async (req, res) => {
     })
 })
 
-app.post('/ticket-update',async (req, res) => {
+app.get('/ticket-update',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
     let new_ticket = {}
-    let data = req.body
     
-    let old_ticket = await Ticket_getOne(data.id)
+    let old_ticket = await Ticket_getOne(req.param("id"))
     
-    if (data.name != "") new_ticket.name = data.name
+    if (req.param("name") != "") new_ticket.name = req.param("name")
     else new_ticket.name = old_ticket[0].name
 
-    if (data.amount != "") new_ticket.amount = data.amount
+    if (req.param("amount") != "") new_ticket.amount = req.param("amount")
     else new_ticket.amount = old_ticket[0].amount
 
-    if (data.startTime != "") new_ticket.startTime = data.startTime
+    if (req.param("startTime") != "") new_ticket.startTime = req.param("startTime")
     else new_ticket.startTime = old_ticket[0].startTime
 
-    if (data.endTime != "") new_ticket.endTime = data.endTime
+    if (req.param("endTime") != "") new_ticket.endTime = req.param("endTime")
     else new_ticket.endTime = old_ticket[0].endTime
     
     await Ticket_Update(
-        data.id,
+        req.param("id"),
         new_ticket.name,
         new_ticket.amount,
         new_ticket.startTime,
@@ -127,11 +114,10 @@ app.post('/ticket-update',async (req, res) => {
     })
 })
 
-app.post('/ticket-delete',async (req, res) => {
+app.get('/ticket-delete',async (req, res) => {
     res.header("Access-Control-Allow-Origin","*")
 
-    let data = req.body
-    await Ticket_Delete(data.id)
+    await Ticket_Delete(req.param("id"))
 
     res.send({
         ok: "true"
